@@ -14,7 +14,6 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 Future<void> main() async {
 // supabase setup
-  await dotenv.load(fileName: ".env");
 
   await Supabase.initialize(
       url: "https://hrjeqzylakwiizgqvxpv.supabase.co",

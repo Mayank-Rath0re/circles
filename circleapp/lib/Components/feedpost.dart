@@ -9,7 +9,7 @@ Future<void> toggleLike() async {
         .select('profile_id')
         .eq('user_id', currentUserId)
         .single();
-    
+
     final currentUserProfileId = currentUserProfileData['profile_id'];
 
     if (isLiked) {
@@ -19,13 +19,11 @@ Future<void> toggleLike() async {
           .delete()
           .eq('post_id', widget.post['post_id'])
           .eq('user_id', currentUserId);
-      
+
       // Decrement like count
-      await supabase
-          .from('Post')
-          .update({'likes': likeCount - 1})
-          .eq('post_id', widget.post['post_id']);
-      
+      await supabase.from('Post').update({'likes': likeCount - 1}).eq(
+          'post_id', widget.post['post_id']);
+
       setState(() {
         isLiked = false;
         likeCount--;
@@ -38,13 +36,11 @@ Future<void> toggleLike() async {
         'profile_id': currentUserProfileId,
         'created_at': DateTime.now().toIso8601String(),
       });
-      
+
       // Increment like count
-      await supabase
-          .from('Post')
-          .update({'likes': likeCount + 1})
-          .eq('post_id', widget.post['post_id']);
-      
+      await supabase.from('Post').update({'likes': likeCount + 1}).eq(
+          'post_id', widget.post['post_id']);
+
       // Create notification for post owner (only if it's not the current user's post)
       final postOwnerId = widget.post['profile_id'];
       if (postOwnerId != currentUserProfileId) {
@@ -59,7 +55,7 @@ Future<void> toggleLike() async {
         });
         print('Like notification created successfully');
       }
-      
+
       setState(() {
         isLiked = true;
         likeCount++;
@@ -68,4 +64,4 @@ Future<void> toggleLike() async {
   } catch (e) {
     print('Error toggling like: $e');
   }
-} 
+}

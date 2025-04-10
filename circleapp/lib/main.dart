@@ -1,14 +1,18 @@
 // ignore_for_file: use_key_in_widget_constructors, avoid_unnecessary_containers, unnecessary_import
 
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:learningdart/pages/landing_page.dart';
 
-
 Future<void> main() async {
-  await Supabase.initialize(url: "https://hrjeqzylakwiizgqvxpv.supabase.co", anonKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhyamVxenlsYWt3aWl6Z3F2eHB2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzIwMDgxNDEsImV4cCI6MjA0NzU4NDE0MX0.0Dzhvs_2xJh8-bmfec8iGA1EJeTgsZB5WVgWYJ9kpPY");
+  await dotenv.load();
+  await Supabase.initialize(
+      url: "https://hrjeqzylakwiizgqvxpv.supabase.co",
+      anonKey:
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhyamVxenlsYWt3aWl6Z3F2eHB2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzIwMDgxNDEsImV4cCI6MjA0NzU4NDE0MX0.0Dzhvs_2xJh8-bmfec8iGA1EJeTgsZB5WVgWYJ9kpPY");
 
   runApp(const MyApp());
 }
